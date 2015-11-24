@@ -54,7 +54,7 @@ def get_active_worker_queues():
 
 class QueueProcessingWorker(object):
     def __init__(self):
-        self.q = SimpleQueueClient()
+        self.q = None
 
     def consume_wrapper(self, data):
         try:
@@ -74,6 +74,9 @@ class QueueProcessingWorker(object):
 
     def _log_problem(self):
         logging.exception("Problem handling data on queue %s" % (self.queue_name,))
+
+    def setup(self):
+        self.q = SimpleQueueClient()
 
     def start(self):
         self.q.register_json_consumer(self.queue_name, self.consume_wrapper)
