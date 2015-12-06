@@ -1,0 +1,8 @@
+We wanted to fix Issue #203 : https://github.com/zulip/zulip/issues/203
+
+We split up the save_state into to save_narrow, save_pointer, and save_compose so that compose could be saved without narrow and pointer.
+
+Changed files:
+- static/js/reload.js
+- static/js/server_events.js
+- static/js/zulip.js
